@@ -6,10 +6,19 @@ import { AuthModule } from './auth/auth.module';
 import { WebsocketModule } from './websocket/websocket.module';
 import { RoomModule } from './room/room.module';
 import { MessageModule } from './message/message.module';
+import { MediasoupModule } from './mediasoup/mediasoup.module';
+import { VideoGateway } from './video/video.gateway';
 
 @Module({
-  imports: [PrismaModule, AuthModule, WebsocketModule, RoomModule, MessageModule],
+  imports: [
+    PrismaModule,
+    AuthModule,
+    WebsocketModule,
+    RoomModule,
+    MessageModule,
+    MediasoupModule,
+  ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, VideoGateway],
 })
 export class AppModule {}

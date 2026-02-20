@@ -1,0 +1,18 @@
+services:
+  backend:
+    build: .
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres123@database:5432/chatdb
+    depends_on:
+      - database
+
+  database:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres123
+      POSTGRES_DB: chatdb
+   
+  
+    ports:
+      - "6379:6379"

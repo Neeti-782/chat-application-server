@@ -8,6 +8,7 @@ import {
   Delete,
   Req,
   UseGuards,
+  Query,
 } from '@nestjs/common';
 import { RoomService } from './room.service';
 import { CreateRoomDto } from './dto/create-room.dto';
@@ -35,8 +36,8 @@ export class RoomController {
   }
 
   @Get('my-rooms')
-  getUserRoom(@Req() req) {
-    return this.roomService.getUserRoom(req.user.id);
+  getUserRoom(@Req() req, @Query('search') search?: string) {
+    return this.roomService.getUserRoom(req.user.id, search);
   }
 
   @Get('users')

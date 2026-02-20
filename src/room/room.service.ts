@@ -21,7 +21,7 @@ export class RoomService {
     },
   });
 
-  async getUserRoom(userId: string) {
+  async getUserRoom(userId: string, search?: string) {
     return this.prismaService.room.findMany({
       where: {
         members: {
@@ -29,6 +29,12 @@ export class RoomService {
             userId: userId,
           },
         },
+        ...(search && {
+          name: {
+            contains: search,
+            mode: 'insensitive',
+          },
+        }),
       },
       include: {
         members: {
